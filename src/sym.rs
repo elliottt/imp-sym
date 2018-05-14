@@ -35,9 +35,9 @@ impl Constraint {
         Box::new(Constraint::True())
     }
 
-    pub fn from_stmt(stmt: &Box<Stmt>) -> Box<Constraint> {
-        match **stmt {
-            Stmt::Skip() =>
+    pub fn from_stmt(stmt: &Stmt) -> Box<Constraint> {
+        match *stmt {
+            Stmt::Skip =>
                 Constraint::mk_true(),
 
             Stmt::Assign(ref s,ref e) =>

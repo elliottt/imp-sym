@@ -5,7 +5,7 @@ use std::fmt;
 pub enum Stmt {
     Assign(String,Box<Expr>),
     If(Box<Expr>,Box<Stmt>,Box<Stmt>),
-    Skip(),
+    Skip,
 }
 
 impl Stmt {
@@ -18,7 +18,22 @@ impl Stmt {
     }
 
     pub fn mk_skip() -> Box<Stmt> {
-        Box::new(Stmt::Skip())
+        Box::new(Stmt::Skip)
+    }
+}
+
+impl fmt::Display for Stmt {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match *self {
+            Stmt::Assign(ref s, ref rhs) =>
+                write!(f, "{} = {}", s, rhs),
+
+            Stmt::If(ref c,ref tb,ref fb) =>
+                write!(f, "if ({}) ({}) ({})", c, tb, fb),
+
+            Stmt::Skip =>
+                write!(f, "skip"),
+        }
     }
 }
 
@@ -26,8 +41,8 @@ impl Stmt {
 pub enum Expr {
     Var(String),
     Not(Box<Expr>),
-    True(),
-    False(),
+    True,
+    False,
 }
 
 impl Expr {
@@ -40,11 +55,11 @@ impl Expr {
     }
 
     pub fn mk_true() -> Box<Expr> {
-        Box::new(Expr::True())
+        Box::new(Expr::True)
     }
 
     pub fn mk_false() -> Box<Expr> {
-        Box::new(Expr::False())
+        Box::new(Expr::False)
     }
 }
 
@@ -57,10 +72,10 @@ impl fmt::Display for Expr {
             Expr::Not(ref e) =>
                 write!(f, "not {}", e),
 
-            Expr::True() =>
+            Expr::True =>
                 write!(f, "true"),
 
-            Expr::False() =>
+            Expr::False =>
                 write!(f, "false")
         }
     }
