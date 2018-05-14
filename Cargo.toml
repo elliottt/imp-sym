@@ -1,0 +1,8 @@
+[package]
+name = "imp-sym"
+version = "0.1.0"
+authors = ["Trevor Elliott <awesomelyawesome@gmail.com>"]
+
+[dependencies]
+rsmt2 = "0.9.6"
+failure = "0.1.1"
