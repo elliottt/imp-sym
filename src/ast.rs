@@ -1,10 +1,5 @@
 
 use std::fmt;
-use std::collections::HashMap;
-
-
-type Env = HashMap<&String, &Box<Expr>>;
-
 
 #[derive(Debug,Clone)]
 pub enum Stmt {
